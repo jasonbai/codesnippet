@@ -1,0 +1,31 @@
+---
+title: "R code snippet"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+### 读入csv，观察多少行，观察多列以及列名
+```{r}
+vehicles <- read.csv("vehicles.csv")
+head(vehicles)
+
+nrow(vehicles)
+ncol(vehicles)
+
+names(vehicles)
+```
+
+### 取一列不同的值，确定不同的值数量，确定同列中最大值最小值
+```{r}
+length(unique(vehicles$year))
+unique(vehicles$year)
+max(vehicles$year)
+min(vehicles$year)
+```
+### 缺失值用NA填补
+```{r}
+vehicles$trany[vehicles$trany == ""] <- NA
+```
+### 将
