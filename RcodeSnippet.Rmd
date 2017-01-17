@@ -28,4 +28,9 @@ min(vehicles$year)
 ```{r}
 vehicles$trany[vehicles$trany == ""] <- NA
 ```
-### 将
+### 将变量变成因子，使用table函数观察记录数
+```{r}
+vehicles$trany <- as.factor(vehicles$trany)
+table(vehicles$trany)
+```
+
