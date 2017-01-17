@@ -33,9 +33,22 @@ vehicles$trany[vehicles$trany == ""] <- NA
 vehicles$trany <- as.factor(vehicles$trany)
 table(vehicles$trany)
 ```
+### 将变量变成数值型
+```{r}
+gasCars$displ <- as.numeric(gasCars$displ)
+```
 ### 观察变量类型，以及都有哪些值
 ```{r}
 class(vehicles$sCharger)
 unique(vehicles$sCharger)
 ```
+### ggplot画图，并生成平滑曲线
+```{r}
+ggplot(mpgByYr,aes(year,avgMPG))+geom_point()+geom_smooth()
+```
+### ggplot画图，并生成分面图形
+```{r}
+ggplot(mpgByYr,aes(year,avgMPG))+geom_point()+facet_wrap(~make,nrow=3)
+```
+
 
