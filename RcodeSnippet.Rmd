@@ -6,7 +6,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-### 读入csv，观察多少行，观察多列以及列名
+## 数据读取
+### 读入csv格式，观测多少行，观测多列以及列名
 ```{r}
 vehicles <- read.csv("vehicles.csv")
 head(vehicles)
@@ -50,5 +51,3 @@ ggplot(mpgByYr,aes(year,avgMPG))+geom_point()+geom_smooth()
 ```{r}
 ggplot(mpgByYr,aes(year,avgMPG))+geom_point()+facet_wrap(~make,nrow=3)
 ```
-
-
