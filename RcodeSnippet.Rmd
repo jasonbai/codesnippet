@@ -28,9 +28,14 @@ min(vehicles$year)
 ```{r}
 vehicles$trany[vehicles$trany == ""] <- NA
 ```
-### 将变量变成因子，使用table函数观察记录数
+### 将变量变成因子，使用table函数观察变量不同取值所对应的记录数
 ```{r}
 vehicles$trany <- as.factor(vehicles$trany)
 table(vehicles$trany)
+```
+### 观察变量类型，以及都有哪些值
+```{r}
+class(vehicles$sCharger)
+unique(vehicles$sCharger)
 ```
 
