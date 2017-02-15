@@ -6,12 +6,11 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-## 数据读取
+## 一、数据读取
 ### 读入csv格式，观测多少行，观测多列以及列名
 ```{r}
 vehicles <- read.csv("vehicles.csv")
 head(vehicles)
-
 nrow(vehicles)
 ncol(vehicles)
 
