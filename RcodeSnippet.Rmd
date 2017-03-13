@@ -13,9 +13,15 @@ vehicles <- read.csv("vehicles.csv")
 head(vehicles)
 nrow(vehicles)
 ncol(vehicles)
-
 names(vehicles)
 ```
+### 数据导入与导出
+```{r}
+library(readr)
+couts <- read_csv("~/Desktop/couts.csv")
+write.csv(couts,"~/zjif.csv")
+```
+
 
 ### 取一列不同的值，确定不同的值数量，确定同列中最大值最小值
 ```{r}
@@ -28,6 +34,12 @@ min(vehicles$year)
 ```{r}
 vehicles$trany[vehicles$trany == ""] <- NA
 ```
+
+### 缺失值NA全部替换为0
+```{r}
+tongdun3[is.na(tongdun3)] <- 0
+```
+
 ### 将变量变成因子，使用table函数观察变量不同取值所对应的记录数
 ```{r}
 vehicles$trany <- as.factor(vehicles$trany)
@@ -42,6 +54,18 @@ gasCars$displ <- as.numeric(gasCars$displ)
 class(vehicles$sCharger)
 unique(vehicles$sCharger)
 ```
+### 数据筛选
+```{r}
+library(dplyr)
+library(xlsx) 
+library(rJava)
+df <- filter(tongdun3, (tongdun3$`24个月内多个平台申请数` > 100 & tongdun3$`12个月内多个平台申请数` > 100) | (tongdun3$`3个月内多个平台申请数` > 20 & tongdun3$身份证命中犯罪通缉名单  == "命中"))
+summary(df)
+```
+
+
+
+
 ### ggplot画图，并生成平滑曲线
 ```{r}
 ggplot(mpgByYr,aes(year,avgMPG))+geom_point()+geom_smooth()
