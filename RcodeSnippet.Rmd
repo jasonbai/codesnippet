@@ -22,6 +22,20 @@ couts <- read_csv("~/Desktop/couts.csv")
 write.csv(couts,"~/zjif.csv")
 ```
 
+#### 取sample
+```{r}
+set.seed(20022012)
+diamond_samp <- diamonds[sample(1:length(diamonds$price), 10000), ]
+
+sample（x, size, replace = FALSE）
+
+#参数 说明
+#x 整体数据，以向量形式给出
+#size 抽取样本的数目
+#replace 如果为F（默认），则是不重复抽样，此时size不能大于x的长度；
+#如果为T，则是重复抽样，此时size允许大于x的长度
+
+```
 
 ### 取一列不同的值，确定不同的值数量，确定同列中最大值最小值
 ```{r}
@@ -57,12 +71,21 @@ unique(vehicles$sCharger)
 ### 数据筛选
 ```{r}
 library(dplyr)
-library(xlsx) 
+library(xlsx)
 library(rJava)
 df <- filter(tongdun3, (tongdun3$`24个月内多个平台申请数` > 100 & tongdun3$`12个月内多个平台申请数` > 100) | (tongdun3$`3个月内多个平台申请数` > 20 & tongdun3$身份证命中犯罪通缉名单  == "命中"))
 summary(df)
 ```
 
+### 修改列名
+```{r}
+colnames(df)=c("Mary","Alice","Bob","Judy","jason")
+```
+### 缺失值标记
+```{r}
+library(Amelia)
+missmap(df)
+```
 
 
 
