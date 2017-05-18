@@ -97,3 +97,59 @@ ggplot(mpgByYr,aes(year,avgMPG))+geom_point()+geom_smooth()
 ```{r}
 ggplot(mpgByYr,aes(year,avgMPG))+geom_point()+facet_wrap(~make,nrow=3)
 ```
+
+### ggplot ggpairs 函数
+#### ggscatmat 函数
+```{r}
+library(GGally)
+#ggscatmat(trees)
+data("iris")
+ggscatmat(iris, columns = 1:4,color = 'Species' )
+```
+
+#### ggpairs函数
+```{r}
+library(ggplot2)
+library(GGally)
+data(tips,package="reshape")
+#pairs(tips[,1:3])
+pm1 <- ggpairs(
+tips[,c(1,3,4,2)],
+mapping = ggplot2::aes(color = sex,shape=sex,alpha = 0.4),
+upper = list(continuous = "cor", combo = "box", discrete = "facetbar"),
+lower = list(continuous = "points", combo = "facethist", discrete = "facetbar"),
+diag = list(continuous = "densityDiag", discrete = "barDiag")
+)
+pm1
+
+
+data(iris)
+pm2 <- ggpairs(
+iris[,c(1,2,5,3,4)],
+mapping = ggplot2::aes(color = Species,shape=Species,alpha = 0.4),
+upper = list(continuous = "density", combo = "box"),
+lower = list(continuous = "points", combo = "dot"),
+title = "Iris",
+axisLabels ="internal")
+pm2
+
+
+diamonds.samp <- diamonds[sample(1:dim(diamonds)[1], 200), ]
+# Custom Example
+pm3 <- ggpairs(
+diamonds.samp[, 1:5],
+mapping = ggplot2::aes(color = cut),
+upper = list(continuous = wrap("density", alpha = 0.5), combo = "box"),
+lower = list(continuous = wrap("smooth", alpha = 0.3), combo = wrap("dot", alpha = 0.4)),
+title = "Diamonds"
+)
+pm3
+```
+
+
+
+
+
+
+
+
