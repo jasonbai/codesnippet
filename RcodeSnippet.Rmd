@@ -147,8 +147,21 @@ pm3
 ```
 
 
+#### 数据筛选及分组观察
+```{r}
+x <- subset(df, select = -c(quality))
+aggregate(x,list(df$quality),median)
+```
 
-
+#### pearson相关性检测
+```{r}
+cor.test(pf$age, pf$friend_count)
+```
+不指定method的话，效果等价，因为cor.test()默认就是pearson
+相关性：0.3以下没有或者很小，0.5中等，0.7较大
+```{r}
+with(pf, cor.test(age, friend_count, method = 'pearson'))
+```
 
 
 
