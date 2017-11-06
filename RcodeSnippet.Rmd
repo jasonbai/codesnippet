@@ -147,6 +147,46 @@ pm3
 ```
 
 
+### 随机森林算法randomForest
+```{r}
+作者：周小生
+链接：https://zhuanlan.zhihu.com/p/27044470
+来源：知乎
+著作权归作者所有，转载请联系作者获得授权。
+
+install.packages("randomForest")
+  library(randomForest)
+   
+  # 下载泰坦尼克号幸存者数据集
+  data <- read.table("http://math.ucdenver.edu/RTutorial/titanic.txt", h=T, sep="\t")
+  # 将Survived列转为yes/no因子
+  data$Survived <- as.factor(ifelse(data$Survived==1, "yes", "no"))              
+   
+  # 拆分为训练集和测试集
+  idx <- runif(nrow(data)) <= .75
+  data.train <- data[idx,]
+  data.test <- data[-idx,]
+   
+  # 训练一个随机森林
+  rf <- randomForest(Survived ~ PClass + Age + Sex,
+               data=data.train, importance=TRUE, na.action=na.omit)
+   
+  # 模型中每个变量的重要程度
+  imp <- importance(rf)
+  o <- order(imp[,3], decreasing=T)
+  imp[o,]
+  #             no      yes MeanDecreaseAccuracy MeanDecreaseGini
+  #Sex    51.49855 53.30255             55.13458         63.46861
+  #PClass 25.48715 24.12522             28.43298         22.31789
+  #Age    20.08571 14.07954             24.64607         19.57423
+   
+  # 混淆矩阵 [[真反例, 假正例], [假反例, 正正例]]
+  table(data.test$Survived, predict(rf, data.test), dnn=list("actual", "predicted"))
+  #      predicted
+  #actual  no yes
+  #   no  427  16
+  #   yes 117 195
+```
 
 
 
