@@ -17,3 +17,5 @@ print type(table)
 table.head(10)
 ```
 
+### 2.
+
