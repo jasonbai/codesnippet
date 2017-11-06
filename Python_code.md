@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-file_name = "朝阳医院2016年销售数据.xlsx"
+file_name = "销售数据.xlsx"
 
 xls_file = pd.ExcelFile(file_name, dtype='object') # 统一先按照str读入，之后转换
 
@@ -30,9 +30,9 @@ print table.count()
 ### 3.[数据列名-重命名](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.rename.html)
 
 ```python
-col = {u'购药时间':'time',\
-u'社保卡号':'cardno',\
-u'商品编码':'drugId',\
+col = {u'时间':'time',\
+u'卡号':'cardno',\
+u'编码':'drugId',\
 u'商品名称':'drugName',\
 u'销售数量':'saleNumber',\
 u'应收金额':'virtualmoney',\
